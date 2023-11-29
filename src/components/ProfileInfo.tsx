@@ -5,6 +5,7 @@ import React from "react";
 
 const ProfileInfo = () => {
   const { data: session } = useSession();
+
   return (
     <div>
       <div className="flex items-center gap-4">
