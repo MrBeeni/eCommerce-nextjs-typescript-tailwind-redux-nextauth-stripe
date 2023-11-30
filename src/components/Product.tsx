@@ -5,7 +5,7 @@ import { ProductType, StateProps } from "../../type";
 import Image from "next/image";
 import { Heart } from "lucide-react";
 import FormattedPrice from "./FormattedPrice";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, addToFavorite } from "@/redux/storeSlice";
 
@@ -28,7 +28,12 @@ const Product = ({ products }: Item) => {
           key={item._id}
           className="relative bg-white group  rounded-lg duration-300 hover:shadow-xl overflow-hidden"
         >
-          <Link href={{ pathname: `/${item?._id}`, query: { _id: item?._id } }}>
+          <Link
+            href={{
+              pathname: `/product-detail/${item?._id}`,
+              query: { id: item?._id },
+            }}
+          >
             <Image
               src={item?.image}
               alt="Product image"
@@ -69,7 +74,10 @@ const Product = ({ products }: Item) => {
               </button>
               <Link
                 className="uppercase font-semibold hover:text-designColor duration-300"
-                href={{ pathname: `/${item?._id}`, query: { _id: item?._id } }}
+                href={{
+                  pathname: `/product-detail/${item?._id}`,
+                  query: { id: item?._id },
+                }}
               >
                 More Info
               </Link>
