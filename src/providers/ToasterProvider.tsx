@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 const ToasterProvider = () => {
   return (
     <Toaster
-      position="top-right"
+      position="bottom-right"
       reverseOrder={false}
       toastOptions={{ duration: 1500 }}
     />

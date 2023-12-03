@@ -52,13 +52,13 @@ const Cart = () => {
     setRowPrice(rowAmt);
   }, [productData]);
 
-  //   // Stripe Payment
+  // Stripe Payment
   const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
   );
   const handleCheckout = async () => {
     const stripe = await stripePromise;
-    const response = await fetch("http://localhost:3000/api/checkout", {
+    const response = await fetch(`/api/checkout`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
