@@ -17,10 +17,12 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { loadStripe } from "@stripe/stripe-js";
+import { CircleLoader } from "react-spinners";
 
 const Cart = () => {
   const [totalAmt, setTotalAmt] = useState(0);
   const [rowPrice, setRowPrice] = useState(0);
+  const [wait, setWait] = useState(false);
   const { productData } = useSelector((state: StateProps) => state.storeState);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -57,6 +59,7 @@ const Cart = () => {
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
   );
   const handleCheckout = async () => {
+    setWait(true);
     const stripe = await stripePromise;
     const response = await fetch(`/api/checkout`, {
       method: "POST",
@@ -69,6 +72,7 @@ const Cart = () => {
     const data = await response.json();
 
     if (response.ok) {
+      setWait(false);
       // await dispatch(saveOrder({ order: productData, id: data.id }));
       stripe?.redirectToCheckout({ sessionId: data.id });
       // dispatch(resetCart());
@@ -207,9 +211,15 @@ const Cart = () => {
             </p>
             <button
               onClick={handleCheckout}
-              className="bg-zinc-800 text-zinc-200 my-2 py-2 uppercase text-center rounded-md font-semibold hover:bg-black hover:text-white duration-200"
+              className="bg-zinc-800 text-zinc-200 my-2 py-2 uppercase flex justify-center rounded-md font-semibold hover:bg-black hover:text-white duration-200"
             >
-              Proceed to Checkout
+              {wait ? (
+                <span className="flex items-center gap-5">
+                  Processing <CircleLoader color="#ffff" size={19} />{" "}
+                </span>
+              ) : (
+                <>Proceed to Checkout</>
+              )}
             </button>
           </div>
         </div>

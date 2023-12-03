@@ -32,7 +32,6 @@ const Product = ({ products }: Item) => {
           <Link
             href={{
               pathname: `/product-detail/${item?._id}`,
-              query: { id: item?._id },
             }}
           >
             <Image
@@ -77,7 +76,6 @@ const Product = ({ products }: Item) => {
                 className="uppercase font-semibold hover:text-designColor duration-300"
                 href={{
                   pathname: `/product-detail/${item?._id}`,
-                  query: { id: item?._id },
                 }}
               >
                 More Info
