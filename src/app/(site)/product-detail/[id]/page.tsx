@@ -6,10 +6,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CircleLoader } from "react-spinners";
 
-type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
 const Page = () => {
   const [product, setProduct] = useState<any>();
   const pathname = usePathname();

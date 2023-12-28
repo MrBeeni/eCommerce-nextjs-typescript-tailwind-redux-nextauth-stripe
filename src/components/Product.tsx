@@ -27,7 +27,7 @@ const Product = ({ products }: Item) => {
       {products.map((item) => (
         <div
           key={item._id}
-          className="relative bg-white group  rounded-lg duration-300 hover:shadow-xl overflow-hidden"
+          className="relative bg-white group  rounded-lg duration-500 hover:shadow-2xl  hover:scale-105   overflow-hidden"
         >
           <Link
             href={{
@@ -39,7 +39,7 @@ const Product = ({ products }: Item) => {
               alt="Product image"
               width={500}
               height={500}
-              className="w-full h-80 object-contain lg:object-cover group-hover:scale-105 duration-300"
+              className="w-full h-80 object-contain lg:object-cover "
             />
           </Link>
           <Heart
